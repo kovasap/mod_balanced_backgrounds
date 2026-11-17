@@ -1,0 +1,31 @@
+/* =========================================================================================
+ * Balanced Backgrounds - Town Hire Dialog "Include Equipment" Control Layout
+ * =========================================================================================
+ * Places the "Include Equipment" checkbox cleanly on the right side of the Town Hire Dialog
+ * footer bar (where Vanilla only renders the centered "Leave" button), avoiding any overlap
+ * with Reforged's Perk/PerkGroup toggle or Hardened's Tryout/Dismiss button.
+ * ========================================================================================= */
+
+.world-town-screen > .l-hire-dialog-container .bb-include-equipment-container
+{
+	position: absolute;
+	right: 2.4rem;
+	top: 0;
+	bottom: 0;
+	height: 3.2rem;
+	margin: auto 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.world-town-screen > .l-hire-dialog-container .bb-include-equipment-label
+{
+	margin-left: 0.8rem;
+	line-height: 2.2rem;
+	white-space: nowrap;
+	cursor: pointer;
+	user-select: none;
+}
