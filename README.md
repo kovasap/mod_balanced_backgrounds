@@ -27,6 +27,12 @@ not so that there are no bad bros anymore.
 The average endgame power level of all backgrounds with this mod is around that
 of a militia background.
 
+## How It Works
+
+At runtime, the mod evaluates every background's starting attribute modifiers in Standard Stat Points (SSP), clears artificial talent lockouts down to at most one thematic flaw, and applies a linear variance curve across both starting stat roll ranges and talent star counts. Premium backgrounds roll tight, dependable starting stats with few stars—making them a consistent "sure thing" with a slightly higher average Level-11 total—while weaker lowborn backgrounds roll wider stat ranges and heavier, higher-variance star distributions, giving them roughly a 30% chance to surpass a premium recruit at Level 11 and a substantially higher ceiling when you find a prodigy. Starting Origin roster characters (including Companions) are also adjusted to use these same background-calibrated star rules.
+
+In addition, character daily wages, tryout fees, and base signing costs are calculated purely from each recruit's actual `BaseProperties` stats rather than preset background multipliers, so wages scale naturally as a brother levels up and gains stats. In the Town Hire Screen, an **"Include Equipment"** checkbox lets you toggle between hiring recruits with their starting gear or hiring them unequipped for their base stat signing cost alone. All calculations run dynamically without custom save-file serialization, supporting Vanilla Battle Brothers as well as overhaul and background mods such as Reforged, Hardened, and More Backgrounds and Events (XBE).
+
 ## Notes
 
 This mod should work with other mods that add more backgrounds, specifically
