@@ -2,3 +2,5 @@
 /mod-reforged/
 /Hardened/
 /battle-brothers-xbe/
+__pycache__/
+*.pyc

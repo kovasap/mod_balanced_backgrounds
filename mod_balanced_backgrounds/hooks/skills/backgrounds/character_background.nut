@@ -17,9 +17,18 @@
 
 ::BalancedBackgrounds.hook("scripts/skills/backgrounds/character_background", function( q )
 {
-	// Prevent Vanilla's `onAdded` from incrementing `DailyCost` or applying random wage jitter.
+	// Roll Highborn starting pending level-ups (1..6 -> Level 2..7) for newly generated recruits
+	// outside Day-1 Origin scenario spawns, and prevent Vanilla's `onAdded` from incrementing
+	// `DailyCost` or applying random `0.90..1.10` wage jitter.
 	q.onAdded = @(__original) function()
 	{
+		local isScenarioMode = ("State" in ::Tactical) && ::Tactical.State != null && ::Tactical.State.isScenarioMode();
+
+		if (this.m.IsNew && ::BalancedBackgrounds.Temp.ScenarioSpawnDepth == 0 && !isScenarioMode)
+		{
+			this.m.Level = ::BalancedBackgrounds.Math.rollStartingLevelForBackground(this);
+		}
+
 		local savedDailyCost = this.m.DailyCost;
 		__original();
 		this.m.DailyCost = savedDailyCost;

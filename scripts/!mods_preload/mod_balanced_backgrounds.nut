@@ -16,11 +16,12 @@
 	Name = "Balanced Backgrounds",
 	GitHubURL = "https://github.com/kovasap/mod_balanced_backgrounds",
 
-	// Re-entrancy counters used when wrapping inherited background methods (create / onChangeAttributes)
-	// so parent-to-child super calls only apply filtering or stat compression once at the outer call.
+	// Re-entrancy counters used when wrapping inherited background and scenario methods so
+	// parent-to-child super calls and Day-1 scenario spawns behave predictably.
 	Temp = {
 		CreateDepth = 0,
-		CompressionDepth = 0
+		CompressionDepth = 0,
+		ScenarioSpawnDepth = 0
 	}
 };
 
@@ -61,6 +62,7 @@ local function loadModFiles()
 		::BalancedBackgrounds.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 	}
 
+	::include("mod_balanced_backgrounds/config/params");
 	::include("mod_balanced_backgrounds/config/balance_math");
 	::include("mod_balanced_backgrounds/hooks/skills/backgrounds/character_background");
 	::include("mod_balanced_backgrounds/hooks/skills/backgrounds/companion_backgrounds");

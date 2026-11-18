@@ -33,10 +33,23 @@ local function talentsMatch( _a, _b )
 
 ::BalancedBackgrounds.hookTree("scripts/scenarios/world/starting_scenario", function( q )
 {
-	// Re-roll hardcoded starting roster talents at the end of `onSpawnAssets()`.
+	// Re-roll hardcoded starting roster talents at the end of `onSpawnAssets()`, while keeping
+	// `ScenarioSpawnDepth > 0` during `__original()` so Day-1 Origin starting brothers preserve
+	// their scenario-defined starting levels rather than rolling tavern pending level-ups.
 	q.onSpawnAssets = @(__original) function()
 	{
-		__original();
+		::BalancedBackgrounds.Temp.ScenarioSpawnDepth++;
+
+		try
+		{
+			__original();
+			::BalancedBackgrounds.Temp.ScenarioSpawnDepth--;
+		}
+		catch (_err)
+		{
+			::BalancedBackgrounds.Temp.ScenarioSpawnDepth--;
+			throw _err;
+		}
 
 		local scenarioID = this.getID();
 
